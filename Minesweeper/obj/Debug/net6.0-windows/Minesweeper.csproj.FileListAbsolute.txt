@@ -4,7 +4,6 @@ C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Debu
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Debug\net6.0-windows\Minesweeper.dll
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Debug\net6.0-windows\Minesweeper.pdb
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.csproj.AssemblyReference.cache
-C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.Main.resources
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.csproj.GenerateResource.cache
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.AssemblyInfoInputs.cache
@@ -15,3 +14,4 @@ C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debu
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.pdb
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.genruntimeconfig.cache
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\ref\Minesweeper.dll
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.Window.resources
