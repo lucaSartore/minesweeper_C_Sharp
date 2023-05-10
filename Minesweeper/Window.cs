@@ -2,9 +2,27 @@ namespace Minesweeper
 {
     public partial class Window : Form
     {
+
+
+        private Tile test;
+        private Field field;
+
         public Window()
         {
             InitializeComponent();
+            InitializeLogic();
+        }
+
+
+        private void InitializeLogic()
+        {
+            test = new Tile(false, 0, 0);
+            field = new Field(Difficulty.EASY);
+
+            field.Location = new Point(100, 100);
+
+            Controls.Add(test);
+            Controls.Add(field);
         }
 
         private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -53,6 +71,11 @@ namespace Minesweeper
         }
 
         private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

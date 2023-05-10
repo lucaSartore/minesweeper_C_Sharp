@@ -6,7 +6,7 @@ namespace Minesweeper
 	public class Tile: Button
 	{
 		// dimention of the button
-		private const int DIMENTION = 100;
+		public const int DIMENTION = 50;
         // color of the button when unpresd
         private readonly static Color UN_PRESSED_COLOR= Color.FromArgb(255,40,40,40);
         // color of the button when presd
@@ -38,7 +38,7 @@ namespace Minesweeper
         {
             base.OnMouseUp(e);
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && !IsFlagd)
             {
                 if (HasBomb)
                 {

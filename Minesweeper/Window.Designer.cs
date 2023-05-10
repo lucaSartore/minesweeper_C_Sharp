@@ -37,7 +37,6 @@ namespace Minesweeper
             difficulty_selector = new ComboBox();
             timer_pannel = new Panel();
             timer_text = new TextBox();
-            button1 = new Tile(false, 0, 0);
             game_stats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)stats_splittr).BeginInit();
             stats_splittr.Panel2.SuspendLayout();
@@ -96,8 +95,9 @@ namespace Minesweeper
             // difficulty_selector
             // 
             difficulty_selector.Anchor = AnchorStyles.None;
+            difficulty_selector.AutoCompleteCustomSource.AddRange(new string[] { "Easy" });
             difficulty_selector.BackColor = SystemColors.ControlLightLight;
-            difficulty_selector.Items.AddRange(new object[] { "Easy (10x10)", "Medium (40x25)", "Hard (200x120)" });
+            difficulty_selector.Items.AddRange(new object[] { "Easy", "Medium", "Hard" });
             difficulty_selector.Location = new Point(57, 22);
             difficulty_selector.Name = "difficulty_selector";
             difficulty_selector.Size = new Size(182, 33);
@@ -122,17 +122,12 @@ namespace Minesweeper
             timer_text.TabIndex = 0;
             timer_text.TextChanged += textBox1_TextChanged;
             // 
-            // button1
-            // 
-            button1.Location = new Point(220, 315);
-            // 
             // Window
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1366, 663);
-            Controls.Add(button1);
             Controls.Add(game_stats);
             Name = "Window";
             Text = "Minesweeper";
@@ -155,6 +150,5 @@ namespace Minesweeper
         private SplitContainer stats_splittr;
         private ProgressBar progressBar1;
         private ComboBox difficulty_selector;
-        private Tile button1;
     }
 }
