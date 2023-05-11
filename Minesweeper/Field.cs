@@ -177,5 +177,6 @@ namespace Minesweeper
             }
             return newShuffledList;
         }
+
     }
 }

@@ -64,10 +64,6 @@ namespace Minesweeper
             stats_splittr.Location = new Point(322, 0);
             stats_splittr.Name = "stats_splittr";
             // 
-            // stats_splittr.Panel1
-            // 
-            stats_splittr.Panel1.Paint += splitContainer1_Panel1_Paint;
-            // 
             // stats_splittr.Panel2
             // 
             stats_splittr.Panel2.Controls.Add(progressBar1);
@@ -80,7 +76,7 @@ namespace Minesweeper
             progressBar1.Anchor = AnchorStyles.None;
             progressBar1.Location = new Point(64, 21);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(296, 34);
+            progressBar1.Size = new Size(301, 34);
             progressBar1.TabIndex = 0;
             // 
             // gamemode_selector_pannel
@@ -98,9 +94,9 @@ namespace Minesweeper
             difficulty_selector.AutoCompleteCustomSource.AddRange(new string[] { "Easy" });
             difficulty_selector.BackColor = SystemColors.ControlLightLight;
             difficulty_selector.Items.AddRange(new object[] { "Easy", "Medium", "Hard" });
-            difficulty_selector.Location = new Point(57, 22);
+            difficulty_selector.Location = new Point(85, 21);
             difficulty_selector.Name = "difficulty_selector";
-            difficulty_selector.Size = new Size(182, 33);
+            difficulty_selector.Size = new Size(109, 33);
             difficulty_selector.TabIndex = 0;
             difficulty_selector.SelectedIndexChanged += difficulty_selector_SelectedIndexChanged;
             // 
@@ -120,7 +116,6 @@ namespace Minesweeper
             timer_text.Name = "timer_text";
             timer_text.Size = new Size(102, 31);
             timer_text.TabIndex = 0;
-            timer_text.TextChanged += textBox1_TextChanged;
             // 
             // Window
             // 

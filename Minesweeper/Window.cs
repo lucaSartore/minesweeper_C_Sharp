@@ -18,66 +18,74 @@ namespace Minesweeper
             field.Location = new Point(100, 100);
 
             Controls.Add(field);
+            SetMinSize();
+            KeepFieldCenter();
         }
 
-        private void splitter1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
 
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void splitContainer3_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void difficulty_selector_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (difficulty_selector.SelectedIndex)
+            {
 
+                case 0:
+                    Controls.Remove(field);
+                    field = new Field(Difficulty.EASY);
+                    Controls.Add(field);
+                    SetMinSize();
+                    KeepFieldCenter();
+                    break;
+                case 1:
+                    Controls.Remove(field);
+                    field = new Field(Difficulty.MEDIUM);
+                    Controls.Add(field);
+                    SetMinSize();
+                    KeepFieldCenter();
+                    break;
+                case 2:
+                    Controls.Remove(field);
+                    field = new Field(Difficulty.HARD);
+                    Controls.Add(field);
+                    KeepFieldCenter();
+                    SetMinSize();
+                    break;
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        // keep it center when rezized
+        protected override void OnResize(EventArgs e)
         {
+            base.OnResize(e);
 
+            KeepFieldCenter();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void KeepFieldCenter()
         {
+            if (field != null)
+            {
+                int height_game_stats = game_stats.Height;
 
+                // Calculate the new position of the button when the form is resized
+                int width = field.Width;
+                int height = field.Height - height_game_stats;
+                int x = (ClientSize.Width - width) / 2; // Center horizontally
+                int y = (ClientSize.Height - height) / 2; // Center vertically
+
+                // Set the new position of the button
+                field.Location = new System.Drawing.Point(x, y);
+            }
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void SetMinSize()
         {
+            int min_height = field.Height + game_stats.Height + 100;
+            int min_width = Math.Max(field.Width + 100, 600);
 
+            MinimumSize = new System.Drawing.Size(min_width, min_height);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
