@@ -19,6 +19,8 @@ namespace Minesweeper
         private int size_y;
         private int number_of_bombs;
         public bool is_initialize;
+        private Window MainWindow;
+        private int number_of_flags;
         Tile[,] tiles;
 
         public Tile GetTile(int x, int y)
@@ -31,10 +33,11 @@ namespace Minesweeper
             return tiles[x, y];
         }
 
-        public Field(Difficulty difficulty): base()
+        public Field(Difficulty difficulty,Window MainWindow): base()
         {
 
             is_initialize = false;
+            this.MainWindow = MainWindow;
             base.Margin = new Padding(0, 0, 0, 0);
 
             // chouse size_x and size_y based on difficulty
@@ -176,6 +179,17 @@ namespace Minesweeper
                 list.Remove(list[randomElementInList]);
             }
             return newShuffledList;
+        }
+
+        public void AddFlag()
+        {
+            number_of_flags++;
+            MainWindow.SetFlagLable(number_of_flags + " / " + number_of_bombs);
+        }
+        public void RemoveFlag()
+        {
+            number_of_flags--;
+            MainWindow.SetFlagLable(number_of_flags + " / " + number_of_bombs);
         }
 
     }

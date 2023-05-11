@@ -15,3 +15,4 @@ C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debu
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.genruntimeconfig.cache
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\ref\Minesweeper.dll
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.Window.resources
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Debug\net6.0-windows\Minesweeper.Properties.Resources.resources

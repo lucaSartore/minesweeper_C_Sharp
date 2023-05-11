@@ -187,11 +187,13 @@ namespace Minesweeper
                     {
                         image.Image = FLAG_IMAGE;
                         base.Controls.Add(image);
+                        field.AddFlag();
                     }
                     else
                     {
                         base.Controls.Remove(image);
                         image.Image = null;
+                        field.RemoveFlag();
                     }
                 }
             }
