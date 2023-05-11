@@ -23,7 +23,7 @@ namespace Minesweeper
         private readonly Image FLAG_IMAGE = Image.FromFile("../../../assets/flag.png");
 
         // whether thid tile contain a bomb or not
-        private readonly bool has_bomb;
+        private bool has_bomb;
 		// whether the user has flagd the item or not
 		private bool is_flags;
         // whether the user has flagd the item or not
@@ -94,6 +94,10 @@ namespace Minesweeper
         }
 
 
+        public void BecameBomb()
+        {
+            has_bomb = true;
+        }
         public void OnMouseUpPubblic(MouseEventArgs e)
         {
             OnMouseUp(e);

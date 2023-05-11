@@ -114,24 +114,15 @@ namespace Minesweeper
             {
                 tiles_to_generate -= 9;
             }
-            List<bool> is_bomb = new List<bool> { };
-            // pushing the bombs
-            for(int i=0; i<number_of_bombs; i++)
-            {
-                is_bomb.Add(true);
-            }
-            // pushing the non bombs
-            for(int i=0; i < tiles_to_generate - number_of_bombs; i++)
-            {
-                is_bomb.Add(false);
-            }
-
-            List<bool> is_bomb_shuffle = ShuffleIntList(is_bomb);
 
 
-            
+            int bomb_to_generate = number_of_bombs;
+            int non_bomb_to_generate = tiles_to_generate - number_of_bombs;
 
-            System.Diagnostics.Debug.WriteLine(is_bomb_shuffle.Capacity);
+
+            int index = 0;
+
+            Random rand = new Random();
 
             // placing the bombs
             for (int x = 0; x < size_x; x++)
@@ -141,18 +132,22 @@ namespace Minesweeper
                     // if we are not close to the first click
                     if(Math.Abs(x-x_first_click) > 1 || Math.Abs(y - y_first_click) > 1)
                     {
-                        
-                        bool bomb = is_bomb_shuffle.ElementAt(0);
-                        is_bomb_shuffle.RemoveAt(0);
-                        base.Controls.Remove(tiles[x, y]);
-                        tiles[x, y] = new Tile(bomb, x, y, this);
-                        tiles[x, y].Margin = new Padding(0, 0, 0, 0);
-                        base.Controls.Add(tiles[x, y], x, y);
+                        double probability_bomb = (double)bomb_to_generate / (double)(bomb_to_generate + non_bomb_to_generate);
+                        if(rand.NextDouble() < probability_bomb)
+                        {
+                            // generate a bomb
+                            tiles[x, y].BecameBomb();
+                            bomb_to_generate--;
+                        }
+                        else
+                        {
+                            // generate non bomb
+                            non_bomb_to_generate--;
+                        }
                     }
                 }
             }
 
-            System.Diagnostics.Debug.WriteLine(is_bomb_shuffle.Capacity);
 
             // calcualte the bomb counter
             for (int x = 0; x < size_x; x++)

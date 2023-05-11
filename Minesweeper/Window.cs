@@ -13,7 +13,7 @@ namespace Minesweeper
 
         private void InitializeLogic()
         {
-            field = new Field(Difficulty.HARD);
+            field = new Field(Difficulty.EASY);
 
             field.Location = new Point(100, 100);
 
