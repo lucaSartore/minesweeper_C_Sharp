@@ -2,9 +2,6 @@ namespace Minesweeper
 {
     public partial class Window : Form
     {
-
-
-        private Tile test;
         private Field field;
 
         public Window()
@@ -16,12 +13,10 @@ namespace Minesweeper
 
         private void InitializeLogic()
         {
-            test = new Tile(false, 0, 0);
-            field = new Field(Difficulty.EASY);
+            field = new Field(Difficulty.HARD);
 
             field.Location = new Point(100, 100);
 
-            Controls.Add(test);
             Controls.Add(field);
         }
 

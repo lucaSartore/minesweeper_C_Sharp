@@ -19,6 +19,15 @@ namespace Minesweeper
         int size_y;
         Tile[,] tiles;
 
+        public Tile GetTile(int x, int y)
+        {
+            // check the ranges
+            if (x < 0 || y < 0 || x >= size_x || y>= size_y)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            return tiles[x, y];
+        }
 
         public Field(Difficulty difficulty): base()
         {
@@ -63,13 +72,22 @@ namespace Minesweeper
                 size_y * Tile.DIMENTION
                 );
 
+            Random random = new Random();
+
             for(int x=0; x < size_x; x++)
             {
                 for(int y=0; y < size_y; y++)
                 {
-                    tiles[x, y] = new Tile(false, x, y);
+                    tiles[x, y] = new Tile(random.NextDouble()>0.85, x, y, this);
                     tiles[x, y].Margin = new Padding(0, 0, 0, 0);
                     base.Controls.Add(tiles[x, y], x, y);
+                }
+            }
+            for (int x = 0; x < size_x; x++)
+            {
+                for (int y = 0; y < size_y; y++)
+                {
+                    tiles[x,y].UpdateBombCount();
                 }
             }
         }
