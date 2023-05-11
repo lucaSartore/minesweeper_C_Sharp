@@ -15,8 +15,10 @@ namespace Minesweeper
 
     public class Field: TableLayoutPanel
     {
-        int size_x;
-        int size_y;
+        private int size_x;
+        private int size_y;
+        private int number_of_bombs;
+        public bool is_initialize;
         Tile[,] tiles;
 
         public Tile GetTile(int x, int y)
@@ -31,6 +33,8 @@ namespace Minesweeper
 
         public Field(Difficulty difficulty): base()
         {
+
+            is_initialize = false;
             base.Margin = new Padding(0, 0, 0, 0);
 
             // chouse size_x and size_y based on difficulty
@@ -39,14 +43,17 @@ namespace Minesweeper
                 case Difficulty.EASY:
                     size_x = 8;
                     size_y = 8;
+                    number_of_bombs = 10;
                     break;
                 case Difficulty.MEDIUM:
                     size_x = 16;
                     size_y = 16;
+                    number_of_bombs = 40;
                     break;
                 case Difficulty.HARD:
                     size_x = 30;
                     size_y = 16;
+                    number_of_bombs = 99;
                     break;
                 default: 
                     throw new ArgumentException("unknown difficulty");
@@ -72,24 +79,108 @@ namespace Minesweeper
                 size_y * Tile.DIMENTION
                 );
 
-            Random random = new Random();
 
+            // putting no bombs in it
             for(int x=0; x < size_x; x++)
             {
                 for(int y=0; y < size_y; y++)
                 {
-                    tiles[x, y] = new Tile(random.NextDouble()>0.85, x, y, this);
+                    tiles[x, y] = new Tile(false, x, y, this);
                     tiles[x, y].Margin = new Padding(0, 0, 0, 0);
                     base.Controls.Add(tiles[x, y], x, y);
                 }
             }
+            
+        }
+
+        /// initialize the fheeld from the first click
+        public void Initailize(int x_first_click, int y_first_click, MouseEventArgs e)
+        {
+            // flag that descrive if the position is close to a border, or close to a corner
+            bool has_border_top_or_borrom = y_first_click == 0 || y_first_click == size_y-1;
+            bool has_border_left_or_right = x_first_click == 0 || x_first_click == size_x-1;
+
+            int tiles_to_generate = size_x*size_y;
+
+            if (has_border_top_or_borrom && has_border_left_or_right)// on a corner
+            {
+                tiles_to_generate -= 4;
+            }
+            else if (has_border_top_or_borrom || has_border_left_or_right)// on a side, but not corner
+            {
+                tiles_to_generate -= 6;
+            }
+            else // on the center
+            {
+                tiles_to_generate -= 9;
+            }
+            List<bool> is_bomb = new List<bool> { };
+            // pushing the bombs
+            for(int i=0; i<number_of_bombs; i++)
+            {
+                is_bomb.Add(true);
+            }
+            // pushing the non bombs
+            for(int i=0; i < tiles_to_generate - number_of_bombs; i++)
+            {
+                is_bomb.Add(false);
+            }
+
+            List<bool> is_bomb_shuffle = ShuffleIntList(is_bomb);
+
+
+            
+
+            System.Diagnostics.Debug.WriteLine(is_bomb_shuffle.Capacity);
+
+            // placing the bombs
             for (int x = 0; x < size_x; x++)
             {
                 for (int y = 0; y < size_y; y++)
                 {
-                    tiles[x,y].UpdateBombCount();
+                    // if we are not close to the first click
+                    if(Math.Abs(x-x_first_click) > 1 || Math.Abs(y - y_first_click) > 1)
+                    {
+                        
+                        bool bomb = is_bomb_shuffle.ElementAt(0);
+                        is_bomb_shuffle.RemoveAt(0);
+                        base.Controls.Remove(tiles[x, y]);
+                        tiles[x, y] = new Tile(bomb, x, y, this);
+                        tiles[x, y].Margin = new Padding(0, 0, 0, 0);
+                        base.Controls.Add(tiles[x, y], x, y);
+                    }
                 }
             }
+
+            System.Diagnostics.Debug.WriteLine(is_bomb_shuffle.Capacity);
+
+            // calcualte the bomb counter
+            for (int x = 0; x < size_x; x++)
+            {
+                for (int y = 0; y < size_y; y++)
+                {
+                        tiles[x, y].UpdateBombCount();
+                }
+            }
+
+            is_initialize = true;
+
+            // firing the click event on the original element
+            tiles[x_first_click, y_first_click].OnMouseUpPubblic(e);
+
+        }
+        private static List<bool> ShuffleIntList(List<bool> list)
+        {
+            var random = new Random();
+            var newShuffledList = new List<bool>();
+            var listcCount = list.Count;
+            for (int i = 0; i < listcCount; i++)
+            {
+                var randomElementInList = random.Next(0, list.Count);
+                newShuffledList.Add(list[randomElementInList]);
+                list.Remove(list[randomElementInList]);
+            }
+            return newShuffledList;
         }
     }
 }

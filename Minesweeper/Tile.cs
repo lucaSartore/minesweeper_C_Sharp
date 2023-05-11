@@ -1,6 +1,8 @@
-﻿using System.Transactions;
+﻿using System.Reflection.Emit;
+using System.Transactions;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Label = System.Windows.Forms.Label;
 
 namespace Minesweeper
 {
@@ -19,7 +21,6 @@ namespace Minesweeper
         private readonly Image BOMB_IMAGE = Image.FromFile("../../../assets/bomb.png");
         // the image of a falg
         private readonly Image FLAG_IMAGE = Image.FromFile("../../../assets/flag.png");
-
 
         // whether thid tile contain a bomb or not
         private readonly bool has_bomb;
@@ -40,6 +41,9 @@ namespace Minesweeper
         // the original Field this tile is part of
         private Field field;
 
+        // lable to singla the adjacent bombs
+        private Label label;
+
      
 
         // constructor, specify if it has a bomb in it, and the relative position in the grif
@@ -56,25 +60,54 @@ namespace Minesweeper
             this.has_been_clickd = false;
 
             // creating the image
-            this.image = new PictureBox();
+            image = new PictureBox();
             image.Margin = new Padding(0, 0, 0, 0);
             image.Size = new Size(DIMENTION-4, DIMENTION-4);
             image.Location = new Point(2, 2);
             image.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // creating the lable
+            label = new Label();
+            label.Margin = new Padding(0, 0, 0, 0);
+            //label.AutoSize = true;
+            label.TabIndex = 1;
+            label.Size = new Size(DIMENTION - 4, DIMENTION - 4);
+            label.Location = new Point(2, 2);
+            label.BackColor = Color.Transparent;
+            label.Font = new Font(label.Font.FontFamily, 15, FontStyle.Bold);
+            label.TextAlign = ContentAlignment.MiddleCenter;
 
             // passing the clicl event up chain
             image.MouseUp += (sender, e) =>
             {
                 this.OnMouseUp(e);
             };
+            // passing the clicl event up chain
+            label.MouseUp += (sender, e) =>
+            {
+                this.OnMouseUp(e);
+            };
 
-            base.Controls.Add(image);
+
+            //base.Controls.Add(label);
+            //base.Controls.Add(image);
         }
 
 
+        public void OnMouseUpPubblic(MouseEventArgs e)
+        {
+            OnMouseUp(e);
+        }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
+            // if the fhieald is not yet inizialized, i do so
+            if(field.is_initialize == false)
+            {
+                field.Initailize(pos_x,pos_y,e);
+                return;
+            }
+
             base.OnMouseUp(e);
             if (!has_been_clickd)
             {
@@ -85,6 +118,7 @@ namespace Minesweeper
                     {
                         base.BackColor = DEFEAT_COLOR;
                         image.Image = BOMB_IMAGE;
+                        base.Controls.Add(image);
                     }
                     else
                     {
@@ -92,7 +126,7 @@ namespace Minesweeper
                         // click the adjacent tiles
                         if(adjacent_bombs == 0)
                         {
-                            foreach ((int, int) delta in new (int, int)[] { (-1, 0), (0, -1), (1, 0), (0, 1) })
+                            foreach ((int, int) delta in new (int, int)[] { (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1) })
                             {
                                 int x = pos_x + delta.Item1;
                                 int y = pos_y + delta.Item2;
@@ -106,6 +140,38 @@ namespace Minesweeper
                                 }
                             }
                         }
+                        else //adjacent_bombs == 0
+                        {
+                            label.Text = adjacent_bombs.ToString();
+                            switch (adjacent_bombs)
+                            {
+                                case 1:
+                                    label.ForeColor = Color.Blue;
+                                    break;
+                                case 2:
+                                    label.ForeColor = Color.Green;
+                                    break;
+                                case 3:
+                                    label.ForeColor = Color.Red;
+                                    break;
+                                case 4:
+                                    label.ForeColor = Color.DarkBlue;
+                                    break;  
+                                case 5:
+                                    label.ForeColor = Color.DarkRed;
+                                    break;
+                                case 6:
+                                    label.ForeColor = Color.Cyan;
+                                    break;
+                                case 7:
+                                    label.ForeColor = Color.Purple;
+                                    break;
+                                case 8:
+                                    label.ForeColor = Color.DarkGray;
+                                    break;
+                            }
+                            base.Controls.Add(label);
+                        }
                     }
                 }
                 else if (e.Button == MouseButtons.Right)
@@ -116,9 +182,11 @@ namespace Minesweeper
                     if (is_flags)
                     {
                         image.Image = FLAG_IMAGE;
+                        base.Controls.Add(image);
                     }
                     else
                     {
+                        base.Controls.Remove(image);
                         image.Image = null;
                     }
                 }
