@@ -30,13 +30,15 @@ namespace Minesweeper
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             game_stats = new Panel();
             panel_flag = new Panel();
             gamemode_selector_pannel = new Panel();
             difficulty_selector = new ComboBox();
             timer_pannel = new Panel();
-            timer_text = new TextBox();
+            time_text = new Label();
             reset_button = new Button();
+            timer = new System.Windows.Forms.Timer(components);
             game_stats.SuspendLayout();
             gamemode_selector_pannel.SuspendLayout();
             timer_pannel.SuspendLayout();
@@ -87,21 +89,25 @@ namespace Minesweeper
             // timer_pannel
             // 
             timer_pannel.BackColor = SystemColors.MenuHighlight;
+            timer_pannel.Controls.Add(time_text);
             timer_pannel.Controls.Add(reset_button);
-            timer_pannel.Controls.Add(timer_text);
             timer_pannel.Dock = DockStyle.Right;
-            timer_pannel.Location = new Point(672, 0);
+            timer_pannel.Location = new Point(628, 0);
             timer_pannel.Name = "timer_pannel";
-            timer_pannel.Size = new Size(278, 77);
+            timer_pannel.Size = new Size(322, 77);
             timer_pannel.TabIndex = 0;
             // 
-            // timer_text
+            // time_text
             // 
-            timer_text.Anchor = AnchorStyles.None;
-            timer_text.Location = new Point(136, 23);
-            timer_text.Name = "timer_text";
-            timer_text.Size = new Size(102, 31);
-            timer_text.TabIndex = 0;
+            time_text.AutoSize = true;
+            time_text.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            time_text.Location = new Point(140, 17);
+            time_text.Name = "time_text";
+            time_text.Size = new Size(97, 45);
+            time_text.TabIndex = 1;
+            time_text.Text = "0:0:0";
+            time_text.TextAlign = ContentAlignment.MiddleCenter;
+            time_text.Click += label1_Click;
             // 
             // reset_button
             // 
@@ -113,6 +119,11 @@ namespace Minesweeper
             reset_button.Text = "RESET";
             reset_button.UseVisualStyleBackColor = false;
             reset_button.Click += reset_burron_Click;
+            // 
+            // timer
+            // 
+            timer.Interval = 50;
+            timer.Tick += timer1_Tick;
             // 
             // Window
             // 
@@ -136,9 +147,10 @@ namespace Minesweeper
         private Panel game_stats;
         private Panel gamemode_selector_pannel;
         private Panel timer_pannel;
-        private TextBox timer_text;
         private ComboBox difficulty_selector;
         private Panel panel_flag;
         private Button reset_button;
+        private Label time_text;
+        private System.Windows.Forms.Timer timer;
     }
 }

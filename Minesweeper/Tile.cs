@@ -103,6 +103,17 @@ namespace Minesweeper
             OnMouseUp(e);
         }
 
+        // uncover the tile if is a bomb
+        public void UncoverIfBomb()
+        {
+            if (has_bomb)
+            {
+                base.BackColor = DEFEAT_COLOR;
+                image.Image = BOMB_IMAGE;
+                base.Controls.Add(image);
+            }
+        }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             // if the fhieald is not yet inizialized, i do so
@@ -123,12 +134,14 @@ namespace Minesweeper
                         base.BackColor = DEFEAT_COLOR;
                         image.Image = BOMB_IMAGE;
                         base.Controls.Add(image);
+                        field.LostEvent();
                     }
                     else
                     {
                         base.BackColor = PRESSED_COLOR;
+                        field.AddTileClickd();
                         // click the adjacent tiles
-                        if(adjacent_bombs == 0)
+                        if (adjacent_bombs == 0)
                         {
                             foreach ((int, int) delta in new (int, int)[] { (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1) })
                             {

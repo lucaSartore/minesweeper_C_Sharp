@@ -14,6 +14,8 @@ namespace Minesweeper
 
         private Label FlagTextLable;
 
+        private int twentieth_of_a_secon;
+
         public Window()
         {
             InitializeComponent();
@@ -28,8 +30,6 @@ namespace Minesweeper
             field.Location = new Point(100, 100);
             difficulty_selector.SelectedIndex = 0;
             Controls.Add(field);
-            SetMinSize();
-            KeepFieldCenter();
 
             // 
             // picture
@@ -59,6 +59,8 @@ namespace Minesweeper
             FlagTextLable.TabIndex = 1;
             FlagTextLable.Font = new Font(FlagTextLable.Font.FontFamily, 10, FontStyle.Bold);
             FlagTextLable.Text = "No Bomb Flagd";
+
+            Reset();
         }
 
         public void SetFlagLable(string s)
@@ -103,6 +105,7 @@ namespace Minesweeper
             {
                 FlagTextLable.Text = "No Bomb Flagd";
             }
+            reset_timer();
         }
 
 
@@ -147,6 +150,111 @@ namespace Minesweeper
         private void reset_burron_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // start the timer
+        public void start_timer()
+        {
+            timer.Start();
+        }
+        // reset the timer and pouse it
+        private void reset_timer()
+        {
+            twentieth_of_a_secon = 0;
+            timer.Stop();
+            time_text.Text = "00:00:00";
+        }
+        // stop the timer
+        public void stop_timer()
+        {
+            timer.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            twentieth_of_a_secon++;
+            int minutes = twentieth_of_a_secon / (60 * 20);
+            int seconds = (twentieth_of_a_secon / 20) % 60;
+            int hundredth_of_a_second = (twentieth_of_a_secon * 5) % 100;
+
+            time_text.Text = minutes + ":" + seconds + ":" + hundredth_of_a_second;
+        }
+        // tell the palyer he as won
+        public void MessageWin() {
+            // Create a new instance of the form
+            Form form = new Form();
+
+            // Create a label with the message
+            Label label = new Label();
+            label.Text = "You Win!";
+            label.AutoSize = true;
+            label.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            label.Location = new System.Drawing.Point(0, 0);
+            label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label.ForeColor = System.Drawing.Color.Green;
+
+            // Create an OK button
+            Button button = new Button();
+            button.Text = "OK";
+            button.AutoSize = true;
+            button.Location = new System.Drawing.Point(100, 100);
+            button.Click += (sender, e) =>
+            {
+                // Close the form when the button is clicked
+                form.Close();
+            };
+
+            // Add the label and button to the form
+            form.Controls.Add(label);
+            form.Controls.Add(button);
+
+            // Set the form properties
+            form.Text = "Congratulations!";
+            form.AutoSize = true;
+            form.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        // tel the player he has lose
+        public void MessageLose()
+        {
+            // Create a new instance of the form
+            Form form = new Form();
+
+            // Create a label with the message
+            Label label = new Label();
+            label.Text = "You Lost!";
+            label.AutoSize = true;
+            label.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+            label.Location = new System.Drawing.Point(0, 0);
+            label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label.ForeColor = System.Drawing.Color.Red;
+
+            // Create an OK button
+            Button button = new Button();
+            button.Text = "OK";
+            button.AutoSize = true;
+            button.Location = new System.Drawing.Point(100, 100);
+            button.Click += (sender, e) =>
+            {
+                // Close the form when the button is clicked
+                form.Close();
+            };
+
+            // Add the label and button to the form
+            form.Controls.Add(label);
+            form.Controls.Add(button);
+
+            // Set the form properties
+            form.Text = "ops!";
+            form.AutoSize = true;
+            form.StartPosition = FormStartPosition.CenterScreen;
+
+            form.Show();    
         }
     }
 }

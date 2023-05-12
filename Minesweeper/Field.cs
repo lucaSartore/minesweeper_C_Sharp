@@ -21,6 +21,7 @@ namespace Minesweeper
         public bool is_initialize;
         private Window MainWindow;
         private int number_of_flags;
+        private int number_of_tiles_clickd;
         Tile[,] tiles;
 
         public Tile GetTile(int x, int y)
@@ -124,6 +125,8 @@ namespace Minesweeper
 
 
             int index = 0;
+            number_of_flags = 0;
+            number_of_tiles_clickd = 0;
 
             Random rand = new Random();
 
@@ -166,6 +169,8 @@ namespace Minesweeper
             // firing the click event on the original element
             tiles[x_first_click, y_first_click].OnMouseUpPubblic(e);
 
+            MainWindow.start_timer();
+
         }
         private static List<bool> ShuffleIntList(List<bool> list)
         {
@@ -190,6 +195,41 @@ namespace Minesweeper
         {
             number_of_flags--;
             MainWindow.SetFlagLable(number_of_flags + " / " + number_of_bombs);
+        }
+        public void AddTileClickd()
+        {
+            number_of_tiles_clickd++;
+            if(number_of_tiles_clickd == size_x * size_y - number_of_bombs-1){
+                WinEvent();
+            }
+        }
+        public void LostEvent()
+        {
+            MainWindow.stop_timer();
+
+            // blow up everything
+            for(int i=0; i< size_x*2; i++)
+            {
+                for (int x = 0; x <= i; x++)
+                {
+                    // click the idagonal
+                    int y = i - x;
+
+                    if (y < size_y && x < size_x)
+                    {
+                        GetTile(x, y).UncoverIfBomb();
+                    }
+                }
+                MainWindow.Refresh();
+            }
+
+            MainWindow.MessageLose();
+        }
+
+        public void WinEvent()
+        {
+            MainWindow.stop_timer();
+            MainWindow.MessageWin();
         }
 
     }
