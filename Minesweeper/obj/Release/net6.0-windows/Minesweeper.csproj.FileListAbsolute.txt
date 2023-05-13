@@ -16,3 +16,4 @@ C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Rele
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Release\net6.0-windows\Minesweeper.pdb
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Release\net6.0-windows\Minesweeper.genruntimeconfig.cache
 C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Release\net6.0-windows\ref\Minesweeper.dll
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\obj\Release\net6.0-windows\Minesweeper.Tile.resources
