@@ -138,6 +138,7 @@ namespace Minesweeper
                     }
                     else
                     {
+                        // has not a bomb
                         base.BackColor = PRESSED_COLOR;
                         field.AddTileClickd();
                         // click the adjacent tiles

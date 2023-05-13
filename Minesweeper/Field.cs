@@ -199,7 +199,9 @@ namespace Minesweeper
         public void AddTileClickd()
         {
             number_of_tiles_clickd++;
-            if(number_of_tiles_clickd == size_x * size_y - number_of_bombs-1){
+
+          
+            if(number_of_tiles_clickd == (size_x * size_y - number_of_bombs)){
                 WinEvent();
             }
         }
@@ -208,7 +210,7 @@ namespace Minesweeper
             MainWindow.stop_timer();
 
             // blow up everything
-            for(int i=0; i< size_x*2; i++)
+            for(int i=0; i< size_x+size_y; i++)
             {
                 for (int x = 0; x <= i; x++)
                 {

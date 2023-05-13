@@ -189,6 +189,9 @@ namespace Minesweeper
             // Create a new instance of the form
             Form form = new Form();
 
+            form.MaximumSize = new Size(400, 250);
+            form.MinimumSize = new Size(400, 250);
+
             // Create a label with the message
             Label label = new Label();
             label.Text = "You Win!";
@@ -202,7 +205,7 @@ namespace Minesweeper
             Button button = new Button();
             button.Text = "OK";
             button.AutoSize = true;
-            button.Location = new System.Drawing.Point(100, 100);
+            button.Location = new System.Drawing.Point(290, 150);
             button.Click += (sender, e) =>
             {
                 // Close the form when the button is clicked
@@ -214,9 +217,11 @@ namespace Minesweeper
             form.Controls.Add(button);
 
             // Set the form properties
-            form.Text = "Congratulations!";
+            form.Text = "Congrats!";
             form.AutoSize = true;
             form.StartPosition = FormStartPosition.CenterScreen;
+
+            form.Show();
         }
 
         // tel the player he has lose
@@ -225,12 +230,15 @@ namespace Minesweeper
             // Create a new instance of the form
             Form form = new Form();
 
+            form.MaximumSize = new Size(400, 250);
+            form.MinimumSize = new Size(400, 250);
+
             // Create a label with the message
             Label label = new Label();
             label.Text = "You Lost!";
             label.AutoSize = true;
             label.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-            label.Location = new System.Drawing.Point(0, 0);
+            label.Size = new Size(20, 50);
             label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             label.ForeColor = System.Drawing.Color.Red;
 
@@ -238,7 +246,7 @@ namespace Minesweeper
             Button button = new Button();
             button.Text = "OK";
             button.AutoSize = true;
-            button.Location = new System.Drawing.Point(100, 100);
+            button.Location = new System.Drawing.Point(290, 150);
             button.Click += (sender, e) =>
             {
                 // Close the form when the button is clicked
@@ -250,11 +258,11 @@ namespace Minesweeper
             form.Controls.Add(button);
 
             // Set the form properties
-            form.Text = "ops!";
+            form.Text = "Oops!";
             form.AutoSize = true;
             form.StartPosition = FormStartPosition.CenterScreen;
 
-            form.Show();    
+            form.Show();
         }
     }
 }
