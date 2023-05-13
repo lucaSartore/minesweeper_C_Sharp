@@ -1,0 +1,5 @@
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Release\net6.0-windows\app.publish\Minesweeper.exe
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Release\net6.0-windows\app.publish\Minesweeper.dll
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Release\net6.0-windows\app.publish\Minesweeper.deps.json
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Release\net6.0-windows\app.publish\Minesweeper.runtimeconfig.json
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Minesweeper\bin\Release\net6.0-windows\app.publish\Minesweeper.pdb

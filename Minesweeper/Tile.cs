@@ -21,6 +21,7 @@ namespace Minesweeper
         private readonly Image BOMB_IMAGE = Image.FromFile("../../../assets/bomb.png");
         // the image of a falg
         private readonly Image FLAG_IMAGE = Image.FromFile("../../../assets/flag.png");
+        
 
         // whether thid tile contain a bomb or not
         private bool has_bomb;

@@ -1,0 +1,5 @@
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Final_build\Minesweeper.exe
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Final_build\Minesweeper.dll
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Final_build\Minesweeper.deps.json
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Final_build\Minesweeper.runtimeconfig.json
+C:\Users\lucas\source\repos\lucaSartore\minesweeper_C_Sharp\Final_build\Minesweeper.pdb
