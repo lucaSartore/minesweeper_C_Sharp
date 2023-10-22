@@ -1,6 +1,6 @@
 ## Minesweeper!
 
-This is my frst c# project, an implementation of the game minesweeper  
+This is my first c# project, an implementation of the game minesweeper  
 
 here some screenshot of the game.
 
